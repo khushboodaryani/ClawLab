@@ -4,7 +4,7 @@ use tokio::net::TcpListener;
 #[tokio::main]
 async fn main() {
     dotenvy::dotenv().ok();
-    let state = server::AppState::new();
+    let state = server::AppState::new().await;
     let app = server::app(state);
 
     // Using Port 8082 to avoid 'address already in use' from previous crashes
