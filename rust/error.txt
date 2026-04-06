@@ -1,0 +1,28 @@
+﻿cargo :     Checking api 
+v0.1.0 (C:\Users\DELL\claw
+-code\rust\crates\api)
+At line:1 char:1
++ cargo check -p server 
+--message-format=short 
+2>&1 | Out-File -FilePat 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (   
+     Checking ap...ust\   
+ crates\api):String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+crates\api\src\providers\g
+emini.rs:205:60: 
+error[E0609]: no field 
+`finishReason` on type 
+`GeminiCandidate`: 
+unknown field
+error: could not compile 
+`api` (lib) due to 1 
+previous error

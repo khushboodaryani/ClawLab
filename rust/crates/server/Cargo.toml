@@ -1,0 +1,33 @@
+[package]
+name = "server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "claw-server"
+path = "src/main.rs"
+
+[dependencies]
+async-stream = "0.3"
+axum = "0.7"
+runtime = { path = "../runtime" }
+api = { path = "../api" }
+dotenvy = "0.15"
+serde = { version = "1", features = ["derive"] }
+serde_json.workspace = true
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "sync", "net", "time", "process", "io-util"] }
+tower-http = { version = "0.5", features = ["cors"] }
+oauth2 = "4"
+jsonwebtoken = "9"
+mongodb = "2.8.2"
+futures-util = "0.3"
+chrono = { version = "0.4", features = ["serde"] }
+bson = "2"
+
+[dev-dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+
+[lints]
+workspace = true
