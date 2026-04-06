@@ -12,6 +12,10 @@ pub mod chat;
 pub mod terminal;
 pub mod db;
 
+use std::sync::Arc;
+use std::sync::atomic::{AtomicU64, Ordering};
+use std::collections::HashMap;
+use tokio::sync::RwLock;
 use crate::session::Session;
 
 pub type SessionId = String;

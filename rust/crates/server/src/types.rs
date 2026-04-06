@@ -81,3 +81,18 @@ pub type ApiResult<T> = Result<T, ApiError>;
 pub fn not_found(msg: String) -> ApiError {
     (StatusCode::NOT_FOUND, Json(ErrorResponse { error: msg }))
 }
+#[derive(Debug, Deserialize)]
+pub struct CreateSessionRequest {
+    pub working_dir: Option<String>,
+}
+
+#[derive(Debug, Serialize)]
+pub struct CreateSessionResponse {
+    pub session_id: String,
+    pub working_dir: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct SendMessageRequest {
+    pub content: String,
+}
