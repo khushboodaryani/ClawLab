@@ -1,7 +1,8 @@
-use mongodb::{Database, bson::doc, options::UpdateOptions};
+use mongodb::{Database, bson::{doc, self}, options::UpdateOptions};
 use serde::{Deserialize, Serialize};
 use runtime::{ConversationMessage, Session as RuntimeSession};
 use crate::SessionId;
+use futures_util::StreamExt;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ChatSessionDoc {
