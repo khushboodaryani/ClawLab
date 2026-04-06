@@ -81,6 +81,19 @@ pub type ApiResult<T> = Result<T, ApiError>;
 pub fn not_found(msg: String) -> ApiError {
     (StatusCode::NOT_FOUND, Json(ErrorResponse { error: msg }))
 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ImagePayload {
+    pub media_type: String,
+    pub data: String, // base64
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SendMessageRequest {
+    pub message: String,
+    pub images: Option<Vec<ImagePayload>>,
+    pub model: Option<String>,
+}
+
 #[derive(Debug, Deserialize)]
 pub struct CreateSessionRequest {
     pub working_dir: Option<String>,
@@ -92,7 +105,7 @@ pub struct CreateSessionResponse {
     pub working_dir: String,
 }
 
-#[derive(Debug, Deserialize)]
-pub struct SendMessageRequest {
-    pub content: String,
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ApproveCommandRequest {
+    pub approved: bool,
 }
