@@ -14,7 +14,7 @@ use tokio::sync::{broadcast, oneshot, RwLock};
 use futures_util::StreamExt;
 
 use crate::{AppState, SessionId};
-use crate::types::{ApiResult, ApiError, ErrorResponse, not_found, SessionEvent, CommandRisk, LogStream, unix_timestamp_millis};
+use crate::types::{ApiResult, ApiError, ErrorResponse, not_found, SessionEvent, CommandRisk, LogStream, unix_timestamp_millis, SendMessageRequest, ApproveCommandRequest};
 use runtime::{ContentBlock, ConversationMessage, Session as RuntimeSession};
 use api::{InputContentBlock, InputMessage, MessageRequest};
 
