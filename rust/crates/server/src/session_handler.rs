@@ -6,12 +6,12 @@ use axum::{
 use std::path::PathBuf;
 use crate::{AppState, SessionId};
 use crate::session::Session;
-use crate::types::{ApiResult, not_found};
+use crate::types::{ApiResult, not_found, CreateSessionRequest, CreateSessionResponse};
 
 pub async fn create_session(
     State(state): State<AppState>,
-    payload: Option<Json<crate::CreateSessionRequest>>,
-) -> (StatusCode, Json<crate::CreateSessionResponse>) {
+    payload: Option<Json<CreateSessionRequest>>,
+) -> (StatusCode, Json<CreateSessionResponse>) {
     let working_dir = payload
         .as_ref()
         .and_then(|Json(p)| p.working_dir.clone())
@@ -29,7 +29,7 @@ pub async fn create_session(
         eprintln!("Failed to persist new session to MongoDB: {e}");
     }
 
-    (StatusCode::CREATED, Json(crate::CreateSessionResponse { 
+    (StatusCode::CREATED, Json(CreateSessionResponse { 
         session_id, 
         working_dir: working_dir_str 
     }))

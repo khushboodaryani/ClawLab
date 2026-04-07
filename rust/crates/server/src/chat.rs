@@ -14,25 +14,9 @@ use tokio::sync::{broadcast, oneshot, RwLock};
 use futures_util::StreamExt;
 
 use crate::{AppState, SessionId};
-use crate::types::{ApiResult, ApiError, ErrorResponse, not_found, SessionEvent, CommandRisk, LogStream, unix_timestamp_millis, SendMessageRequest, ApproveCommandRequest};
+use crate::types::{ApiResult, ApiError, ErrorResponse, not_found, SessionEvent, CommandRisk, LogStream, unix_timestamp_millis, SendMessageRequest, ApproveCommandRequest, ImagePayload};
 use runtime::{ContentBlock, ConversationMessage, Session as RuntimeSession};
 use api::{InputContentBlock, InputMessage, MessageRequest};
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct SendMessageRequest {
-    pub message: String,
-    pub images: Option<Vec<ImagePayload>>,
-    pub model: Option<String>,
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct ImagePayload {
-    pub media_type: String,
-    pub data: String, // base64
-}
-
-#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
-pub struct ApproveCommandRequest { pub approved: bool }
 
 pub async fn send_message(
     State(state): State<AppState>,
